@@ -8,7 +8,7 @@
 FROM openjdk:11.0.2
 
 # Env variables
-ENV SCALA_VERSION 2.12.8
+ENV SCALA_VERSION 2.13.0
 ENV SBT_VERSION 1.2.8
 
 # Install Scala
@@ -32,6 +32,10 @@ RUN \
   echo "case object Temp" > Temp.scala && \
   sbt compile && \
   rm -r project && rm build.sbt && rm Temp.scala && rm -r target
+
+# Install maven
+RUN \
+  apt-get -y install maven
 
 RUN \
   apt-get -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common && \
